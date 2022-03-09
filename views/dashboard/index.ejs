@@ -1,0 +1,198 @@
+<%- include('../parts/header.ejs') %>
+<%- include('../parts/navbar.ejs') %>
+<%- include('../parts/sidebar.ejs') %>
+
+<div class="pt-[90px] h-auto shadow-md py-3 lg:ml-72">
+    <div class="mx-[30px] text-gray-800 font-light">
+        <a href="#" class="text-lg font-bold hover:underline hover:underline-offset-1">Dashboard</a>
+    </div>
+</div>
+
+<div class="flex flex-col h-screen justify-between font-poppins lg:ml-72">
+    <div class="grid grid-cols-12 gap-4 p-[30px]">
+        <div class="h-auto flex flex-row justify-between bg-sky-500 rounded-md shadow-md overflow-hidden col-span-12 sm:col-span-6 xl:col-span-3 p-4 text-white">
+            <svg class="w-1/5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+            <div class="h-auto text-right flex flex-col justify-center">
+                <h1 class="font-thin text-sm">Hari Ini</h1>
+                <h1>Total Penjualan</h1>
+                <p class="text-xl font-bold" >23</p>
+            </div>
+        </div>
+
+        <div class="h-auto flex flex-row justify-between bg-green-500 rounded-md shadow-md overflow-hidden col-span-12 sm:col-span-6 xl:col-span-3 p-4 text-white">
+            <svg class="w-1/5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            <div class="h-auto text-right flex flex-col justify-center">
+                <h1 class="font-thin text-sm">Hari Ini</h1>
+                <h1>Pendapatan</h1>
+                <p class="text-xl font-bold" >IDR 2,340,000</p>
+            </div>
+        </div>
+
+        <div class="h-auto flex flex-row justify-between bg-yellow-500 rounded-md shadow-md overflow-hidden col-span-12 sm:col-span-6 xl:col-span-3 p-4 text-white">
+            <svg class="w-1/5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"></path></svg>
+            <div class="h-auto text-right flex flex-col justify-center">
+                <h1 class="font-thin text-sm">Bulan Ini</h1>
+                <h1>Total Penjualan</h1>
+                <p class="text-xl font-bold" >372</p>
+            </div>
+        </div>
+
+        <div class="h-auto flex flex-row justify-between bg-indigo-500 rounded-md shadow-md overflow-hidden col-span-12 sm:col-span-6 xl:col-span-3 p-4 text-white">
+            <svg class="w-1/5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+            <div class="h-auto text-right flex flex-col justify-center">
+                <h1 class="font-thin text-sm">Bulan Ini</h1>
+                <h1>Pendapatan</h1>
+                <p class="text-xl font-bold" >IDR 28,823,000</p>
+            </div>
+        </div>
+
+        <div class="h-auto col-span-12 mt-4 p-4 rounded-md shadow-md">
+            <div class="flex flex-row justify-start">
+                <div class="h-7 w-[10px] bg-slate-600 rounded-md"></div>
+                <h1 class="ml-3 my-auto">Pesanan Terakhir</h1>
+            </div>
+
+            <div class="overflow-hidden flex flex-col">
+                <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                    <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+                        <div class="overflow-hidden shadow-md rounded-md">
+                            <table class="min-w-full">
+                                <thead class="bg-gray-300">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3 text-sm text-left text-gray-800 font-medium tracking-wider uppercase">
+                                        ID Pesanan
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-sm text-left text-gray-800 font-medium tracking-wider uppercase">
+                                        Email Pelanggan
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-sm text-left text-gray-800 font-medium tracking-wider uppercase">
+                                        Metode Pembayaran
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-sm text-left text-gray-800 font-medium tracking-wider uppercase">
+                                        Total Pembayaran
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-sm text-left text-gray-800 font-medium tracking-wider uppercase">
+                                        Status
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-sm text-left text-gray-800 font-medium tracking-wider uppercase">
+                                        <span class="flex flex-row justify-center">Detail</span>
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr class="bg-white border-b">
+                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
+                                        6221bde31615e7b71c7a63e1
+                                    </td>
+                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
+                                        irvan@semicolon.coffee
+                                    </td>
+                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
+                                        GoPay
+                                    </td>
+                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
+                                        Rp 37,400
+                                    </td>
+                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
+                                        <span class="h-3 py-1 px-3 rounded-xl bg-green-300">Aktif</span>
+                                    </td>
+                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
+                                        <a href="/history-order/thisisid" class="flex flex-row justify-center"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg></a>
+                                    </td>
+                                </tr>
+                                <tr class="bg-white border-b">
+                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
+                                        61e2d6ee1c3edf17f80017b6
+                                    </td>
+                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
+                                        nathanael@semicolon.coffee
+                                    </td>
+                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
+                                        ShopeePay
+                                    </td>
+                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
+                                        Rp 62,000
+                                    </td>
+                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
+                                        <span class="h-3 py-1 px-3 rounded-xl bg-yellow-300">Proses</span>
+                                    </td>
+                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
+                                        <a href="/history-order/thisisid" class="flex flex-row justify-center"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg></a>
+                                    </td>
+                                </tr>
+                                <tr class="bg-white border-b">
+                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
+                                        61e2d6d11c3edf17f80017b2
+                                    </td>
+                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
+                                        ryan@semicolon.coffee
+                                    </td>
+                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
+                                        LinkAja
+                                    </td>
+                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
+                                        Rp 43,500
+                                    </td>
+                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
+                                        <span class="h-3 py-1 px-3 rounded-xl bg-red-300">Selesai</span>
+                                    </td>
+                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
+                                        <a href="/history-order/thisisid" class="flex flex-row justify-center"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg></a>
+                                    </td>
+                                </tr>
+                                <tr class="bg-white border-b">
+                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
+                                        61e2d45e1c3edf17f800179d
+                                    </td>
+                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
+                                        iqbal@semicolon.coffee
+                                    </td>
+                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
+                                        QRIS
+                                    </td>
+                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
+                                        Rp 68,500
+                                    </td>
+                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
+                                        <span class="h-3 py-1 px-3 rounded-xl bg-red-300">Selesai</span>
+                                    </td>
+                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
+                                        <a href="/history-order/thisisid" class="flex flex-row justify-center"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg></a>
+                                    </td>
+                                </tr>
+                                <tr class="bg-white border-b">
+                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
+                                        61e2d0dbe1f7332d28e9dd17
+                                    </td>
+                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
+                                        harits@semicolon.coffee
+                                    </td>
+                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
+                                        QRIS
+                                    </td>
+                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
+                                        Rp 23,500
+                                    </td>
+                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
+                                        <span class="h-3 py-1 px-3 rounded-xl bg-red-300">Selesai</span>
+                                    </td>
+                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
+                                        <a href="/history-order/thisisid" class="flex flex-row justify-center"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg></a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="bg-gray-700 p-5 font-poppins">
+        <p class="text-white m-auto text-center lg:text-left">TITIKOMA By Semicolon; Team</p>
+    </div>
+</div>
+
+<%- include('../parts/footer.ejs') %>

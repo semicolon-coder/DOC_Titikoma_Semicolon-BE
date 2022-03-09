@@ -1,0 +1,77 @@
+<%- include('../parts/header.ejs', { title: "Kategori - TITIKOMA" }) %>
+<%- include('../parts/navbar.ejs') %>
+<%- include('../parts/sidebar.ejs', { position: 'category' }) %>
+
+<div class="pt-[90px] h-auto shadow-md py-3 lg:ml-72">
+    <div class="mx-[30px] text-gray-800 font-light">
+        <a href="/category" class="text-lg font-bold hover:underline hover:underline-offset-1">Kategori</a>
+    </div>
+</div>
+
+<div class="flex flex-col h-screen justify-between font-poppins lg:ml-72">
+    <div class="grid grid-cols-12 gap-4 p-[30px]">
+        <div class="h-auto col-span-12 mt-4 p-4 rounded-md shadow-md">
+            <div class="flex flex-row justify-between">
+                <div class="flex flex-row">
+                    <div class="flex-none py-2 w-[10px] bg-slate-600 rounded-md"></div>
+                    <h1 class="flex-none ml-3 my-auto">Kategori</h1>
+                </div>
+                <button class="bg-green-600 px-3 py-2 rounded-md hover:bg-green-800 hover:shadow-md text-white transition text-sm"><a href="/category/add">Buat Kategori Baru</a></button>
+            </div>
+
+            <div class="overflow-hidden flex flex-col">
+                <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                    <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+                        <div class="overflow-hidden shadow-md rounded-md">
+                            <table class="min-w-full">
+                                <thead class="bg-gray-300">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3 text-sm text-left text-gray-800 font-medium tracking-wider uppercase">
+                                        ID Kategori
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-sm text-left text-gray-800 font-medium tracking-wider uppercase">
+                                        Nama Kategori
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-sm text-left text-gray-800 font-medium tracking-wider uppercase">
+                                        <span class="flex flex-row justify-center">Detail</span>
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr class="bg-white border-b">
+                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
+                                        6220e29b95ba682f2d54eeff
+                                    </td>
+                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
+                                        Minuman
+                                    </td>
+                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
+                                        <a href="/category/thisisid" class="flex flex-row justify-center"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg></a>
+                                    </td>
+                                </tr>
+                                <tr class="bg-white border-b">
+                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
+                                        6220ec05c7358f78107dcb59
+                                    </td>
+                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
+                                        Snack
+                                    </td>
+                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
+                                        <a href="/category/thisisid" class="flex flex-row justify-center"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg></a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-gray-700 p-5 font-poppins">
+        <p class="text-white m-auto text-center lg:text-left">TITIKOMA By Semicolon; Team</p>
+    </div>
+</div>
+
+<%- include('../parts/footer.ejs') %>

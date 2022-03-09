@@ -11,12 +11,13 @@ mongoose.connect(process.env.DB_URI, {useNewUrlParser: true, useUnifiedTopology:
   console.log('Connected to database!');
 })
 
-const categoryRouterAPI = require('./api/category/router');
-const productRouterAPI = require('./api/product/router');
-const orderRouterAPI = require('./api/order/router');
-const promoRouterAPI = require('./api/promo/router');
-const userRouterAPI = require('./api/user/router');
-const testimonialRouterAPI = require('./api/testimonial/router');
+const APIRouter = require('./api/routes');
+const dashboardRouter = require('./app/dashboard/router');
+const categoryRouter = require('./app/category/router');
+const orderRouter = require('./app/order/router');
+const productRouter = require('./app/product/router');
+const promoRouter = require('./app/promo/router');
+const testimonialRouter = require('./app/testimonial/router');
 
 const app = express();
 
@@ -30,13 +31,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/api/category', categoryRouterAPI);
-app.use('/api/product', productRouterAPI);
-app.use('/api/order', orderRouterAPI);
-app.use('/api/promo', promoRouterAPI);
-app.use('/api/promo', userRouterAPI);
-app.use('/api/user', userRouterAPI);
-app.use('/api/testimonial', testimonialRouterAPI)
+app.use('/api', APIRouter);
+app.use('/dashboard', dashboardRouter);
+app.use('/category', categoryRouter);
+app.use('/history-order', orderRouter);
+app.use('/product', productRouter);
+app.use('/promo', promoRouter);
+app.use('/testimonial', testimonialRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

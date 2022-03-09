@@ -1,0 +1,66 @@
+<aside class="font-poppins">
+    <div class="flex flex-col justify-between overflow-y-auto fixed h-screen w-72 py-4 px-3 bg-gray-800 lg:left-0 -left-72 shadow-md" id="sidebar">
+        <div class="flex-none flex">
+            <div class="flex-none h-25 w-[130px]">
+                <img src="../assets/semicolon-logo.png" alt="">
+            </div>
+            <div class="flex-auto"></div>
+            <span class="flex-none w-[35px] h-auto my-auto ml-[25px] lg:hidden" onclick="openSidebar()">
+          <svg class="w-6 h-6 m-auto text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </span>
+        </div>
+        <ul class="flex-none space-y-2 pt-4 my-4 border-t border-gray-700">
+            <li>
+                <a href="/dashboard" class="flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-700">
+                    <svg class="w-6 h-6 <%= position === 'dashboard' ? 'text-white' : 'text-gray-400' %>" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                    <span class="ml-3">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="/category" class="flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-700">
+                    <svg class="w-6 h-6 <%= position === 'category' ? 'text-white' : 'text-gray-400' %>" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path></svg>
+                    <span class="ml-3">Kategori</span>
+                </a>
+            </li>
+            <li>
+                <a href="/product" class="flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-700">
+                    <svg class="w-6 h-6 <%= position === 'product' ? 'text-white' : 'text-gray-400' %>" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                    <span class="ml-3">Produk</span>
+                </a>
+            </li>
+            <li>
+                <a href="/promo" class="flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-700">
+                    <svg class="w-6 h-6 <%= position === 'promo' ? 'text-white' : 'text-gray-400' %>" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2zM10 8.5a.5.5 0 11-1 0 .5.5 0 011 0zm5 5a.5.5 0 11-1 0 .5.5 0 011 0z"></path></svg>
+                    <span class="ml-3">Promosi</span>
+                </a>
+            </li>
+            <li>
+                <a href="/testimonial" class="flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-700">
+                    <svg class="w-6 h-6 <%= position === 'testimonial' ? 'text-white' : 'text-gray-400' %>" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                    <span class="ml-3">Testimonial</span>
+                </a>
+            </li>
+            <li>
+                <a href="/history-order" class="flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-700">
+                    <svg class="w-6 h-6 <%= position === 'history-order' ? 'text-white' : 'text-gray-400' %>" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                    <span class="ml-3">Histori Penjualan</span>
+                </a>
+            </li>
+        </ul>
+        <div class="flex-auto"></div>
+        <ul class="space-y-2 pt-4 my-4 border-t border-gray-700">
+            <li>
+                <a href="#" class="flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-700">
+                    <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    <span class="ml-3">Pengaturan</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-700">
+                    <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+                    <span class="ml-3">Keluar</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</aside>
