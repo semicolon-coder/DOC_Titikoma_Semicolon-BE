@@ -15,17 +15,17 @@
         <div class="h-auto bg-gray-800 shadow-sm p-4">
             <h2 class="text-white font-bold">Buat kategori baru</h2>
         </div>
-        <div class="h-auto p-4">
-            <form action="">
+        <form method="post" action="/category/add">
+            <div class="h-auto p-4">
                 <div class="h-auto flex flex-col mb-3">
                     <label class="mb-1" for="email">Nama Kategori</label>
-                    <input type="text" class="border rounded-md border-gray-500 p-1 pl-2 font-thin text-sm" placeholder="Masukkan nama kategori..">
+                    <input type="text" name="name" class="border rounded-md border-gray-500 p-1 pl-2 font-thin text-sm" placeholder="Masukkan nama kategori..">
                 </div>
-            </form>
-        </div>
-        <div class="h-auto bg-gray-200 p-2 flex justify-end">
-            <button class="bg-gray-700 px-3 py-2 rounded-md hover:bg-gray-900 hover:shadow-md text-white transition text-sm"><a href="">Submit</a></button>
-        </div>
+            </div>
+            <div class="h-auto bg-gray-200 p-2 flex justify-end">
+                <button type="submit" class="bg-gray-700 px-3 py-2 rounded-md hover:bg-gray-900 hover:shadow-md text-white transition text-sm">Submit</button>
+            </div>
+        </form>
     </div>
 
     <div class="bg-gray-700 p-5 font-poppins">

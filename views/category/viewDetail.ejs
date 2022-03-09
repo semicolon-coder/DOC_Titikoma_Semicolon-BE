@@ -6,7 +6,7 @@
     <div class="mx-[30px] text-gray-800 font-light">
         <a href="/category" class="text-lg font-bold hover:underline hover:underline-offset-1">Kategori</a>
         >
-        <a href="/category/add" class="text-lg font-bold hover:underline hover:underline-offset-1"><%= _id %></a>
+        <a href="/category/<%= r._id %>" class="text-lg font-bold hover:underline hover:underline-offset-1"><%= r.name %></a>
     </div>
 </div>
 
@@ -15,22 +15,22 @@
         <div class="h-auto bg-gray-800 shadow-sm p-4">
             <h2 class="text-white font-bold">Ubah kategori</h2>
         </div>
-        <div class="h-auto p-4">
-            <form action="">
+        <form method="post" action="/category/<%= r._id %>/update?_method=PUT">
+            <div class="h-auto p-4">
                 <div class="h-auto flex flex-col mb-3">
-                    <label class="mb-1" for="email">ID Kategori</label>
-                    <input type="text" class="border rounded-md border-gray-500 p-1 pl-2 font-thin text-sm bg-gray-300" disabled value="6220e29b95ba682f2d54eeff">
+                    <label class="mb-1" for="<%= r._id %>">ID Kategori</label>
+                    <input type="text" class="border rounded-md border-gray-500 p-1 pl-2 font-thin text-sm bg-gray-300" disabled value="<%= r._id %>">
                 </div>
                 <div class="h-auto flex flex-col mb-3">
-                    <label class="mb-1" for="email">Nama Kategori</label>
-                    <input type="text" class="border rounded-md border-gray-500 p-1 pl-2 font-thin text-sm" placeholder="Masukkan nama kategori..">
+                    <label class="mb-1" for="<%= r.name %>">Nama Kategori</label>
+                    <input type="text" value="<%= r.name %>" name="name" class="border rounded-md border-gray-500 p-1 pl-2 font-thin text-sm" placeholder="Masukkan nama kategori..">
                 </div>
-            </form>
-        </div>
-        <div class="h-auto bg-gray-200 p-2 flex justify-end">
-            <button class="px-3 py-2 rounded-md border border-red-500 text-red-500 mr-2 text-sm hover:bg-red-500 hover:text-white transition duration-200"><a href="#">Hapus Category</a></button>
-            <button class="bg-gray-700 px-3 py-2 rounded-md hover:bg-gray-900 hover:shadow-md text-white transition text-sm"><a href="">Submit</a></button>
-        </div>
+            </div>
+            <div class="h-auto bg-gray-200 p-2 flex justify-end">
+                <button formmethod="post" formaction="/category/<%= r._id %>?_method=DELETE" class="px-3 py-2 rounded-md border border-red-500 text-red-500 mr-2 text-sm hover:bg-red-500 hover:text-white transition duration-200">Hapus Kategori</button>
+                <button type="submit" class="bg-gray-700 px-3 py-2 rounded-md hover:bg-gray-900 hover:shadow-md text-white transition text-sm">Submit</button>
+            </div>
+        </form>
     </div>
 
     <div class="bg-gray-700 p-5 font-poppins">
