@@ -31,6 +31,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// temporary routes
+app.get('/', (req, res) => {
+  res.redirect('/dashboard');
+})
 app.use('/api', APIRouter);
 app.use('/dashboard', dashboardRouter);
 app.use('/category', categoryRouter);
