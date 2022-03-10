@@ -50,75 +50,31 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr class="bg-white border-b">
-                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
-                                        MERDEKA-78
-                                    </td>
-                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
-                                        Kemerdekaan Republik Indonesia
-                                    </td>
-                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
-                                        10%
-                                    </td>
-                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
-                                        <span class="h-3 py-1 px-3 rounded-xl bg-green-300">Aktif</span>
-                                    </td>
-                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
-                                        17 Agustus 2022
-                                    </td>
-                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
-                                        18 Agustus 2022
-                                    </td>
-                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
-                                        <a href="/promo/thisisid" class="flex flex-row justify-center"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg></a>
-                                    </td>
-                                </tr>
-                                <tr class="bg-white border-b">
-                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
-                                        PANCASILA
-                                    </td>
-                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
-                                        Hari Lahir Pancasila
-                                    </td>
-                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
-                                        5%
-                                    </td>
-                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
-                                        <span class="h-3 py-1 px-3 rounded-xl bg-red-300">Non Aktif</span>
-                                    </td>
-                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
-                                        17 Agustus 2022
-                                    </td>
-                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
-                                        18 Agustus 2022
-                                    </td>
-                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
-                                        <a href="/promo/thisisid" class="flex flex-row justify-center"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg></a>
-                                    </td>
-                                </tr>
-                                <tr class="bg-white border-b">
-                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
-                                        IDULFITRI1443H
-                                    </td>
-                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
-                                        Hari Raya Idul Fitri 1443 Hijriyah
-                                    </td>
-                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
-                                        10%
-                                    </td>
-                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
-                                        <span class="h-3 py-1 px-3 rounded-xl bg-green-300">Aktif</span>
-                                    </td>
-                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
-                                        2 Mei 2022
-                                    </td>
-                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
-                                        3 Mei 2022
-                                    </td>
-                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
-                                        <a href="./promo-detail.html" class="flex flex-row justify-center"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg></a>
-                                    </td>
-                                </tr>
+                                <% r.map(item => { %>
+                                    <tr class="bg-white border-b">
+                                        <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
+                                            <%- item.code %>
+                                        </td>
+                                        <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
+                                            <%- item.name %>
+                                        </td>
+                                        <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
+                                            <%- item.discountValue %>
+                                        </td>
+                                        <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
+                                            <span class="h-3 py-1 px-3 rounded-xl <%- item.status === true ? 'bg-green-300' : 'bg-red-300' %>"><%- item.status === true ? 'Aktif' : 'Non Aktif' %></span>
+                                        </td>
+                                        <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
+                                            <%- item.startDate %>
+                                        </td>
+                                        <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
+                                            <%- item.expiryDate %>
+                                        </td>
+                                        <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
+                                            <a href="/promo/<%- item._id %>" class="flex flex-row justify-center"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg></a>
+                                        </td>
+                                    </tr>
+                                <% }) %>
                                 </tbody>
                             </table>
                         </div>
