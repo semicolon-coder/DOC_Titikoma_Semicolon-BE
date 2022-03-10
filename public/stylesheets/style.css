@@ -1062,8 +1062,24 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 @media (min-width: 768px) {
+    .md\:col-span-3 {
+        grid-column: span 3 / span 3;
+    }
+
+    .md\:col-span-6 {
+        grid-column: span 6 / span 6;
+    }
+
     .md\:mt-0 {
         margin-top: 0px;
+    }
+
+    .md\:grid {
+        display: grid;
+    }
+
+    .md\:grid-cols-12 {
+        grid-template-columns: repeat(12, minmax(0, 1fr));
     }
 
     .md\:flex-row {
@@ -1072,6 +1088,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
     .md\:justify-between {
         justify-content: space-between;
+    }
+
+    .md\:gap-2 {
+        gap: 0.5rem;
     }
 }
 

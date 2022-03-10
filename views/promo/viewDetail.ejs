@@ -17,33 +17,33 @@
                 <h2 class="text-white font-bold">Ubah data promosi</h2>
             </div>
 
-            <div class="h-auto p-4">
-                <div class="h-auto flex flex-col mb-3">
+            <div class="h-auto p-4 md:grid md:grid-cols-12 md:gap-2">
+                <div class="h-auto flex flex-col mb-3 md:col-span-3">
                     <label class="mb-1" for="code">Kode Promosi</label>
                     <input type="text" name="code" value="<%= r.code %>" class="border rounded-md border-gray-500 p-1 pl-2 font-thin text-sm" required placeholder="Masukkan kode promo..">
                 </div>
-                <div class="h-auto flex flex-col mb-3">
+                <div class="h-auto flex flex-col mb-3 md:col-span-3">
                     <label class="mb-1" for="name">Nama Promosi</label>
                     <input type="text" name="name" value="<%= r.name %>" class="border rounded-md border-gray-400 p-1 pl-2 font-thin text-sm" required placeholder="Masukkan nama promosi..">
                 </div>
-                <div class="h-auto flex flex-col mb-3">
+                <div class="h-auto flex flex-col mb-3 md:col-span-3">
                     <label class="mb-1" for="discountValue">Nilai Promosi</label>
                     <input type="text" name="discountValue" value="<%= r.discountValue %>" class="border rounded-md border-gray-400 p-1 pl-2 font-thin text-sm" required placeholder="5000">
                 </div>
-                <div class="h-auto flex flex-col mb-3">
+                <div class="h-auto flex flex-col mb-3 md:col-span-3">
                     <label class="mb-1" for="status">Status</label>
                     <select name="status" class="border rounded-md border-gray-400 p-1 pl-2 font-thin text-sm" required>
-                        <option value="true">Aktif</option>
-                        <option value="false">Non Aktif</option>
+                        <option value="true" <%- r.status === true ? 'selected' : '' %>>Aktif</option>
+                        <option value="false" <%- r.status === false ? 'selected' : '' %>>Non Aktif</option>
                     </select>
                 </div>
-                <div class="h-auto flex flex-col mb-3">
+                <div class="h-auto flex flex-col mb-3 md:col-span-6">
                     <label class="mb-1" for="startDate">Tanggal Mulai</label>
-                    <input type="text" name="startDate" value="<%= r.startDate %>" class="border rounded-md border-gray-400 p-1 pl-2 font-thin text-sm" required placeholder="Masukkan tanggal promosi mulai..">
+                    <input type="date" name="startDate" value="<%- moment.utc(r.startDate).format("YYYY-MM-DD") %>" class="border rounded-md border-gray-400 p-1 pl-2 font-thin text-sm" required placeholder="Masukkan tanggal promosi mulai..">
                 </div>
-                <div class="h-auto flex flex-col mb-3">
+                <div class="h-auto flex flex-col mb-3 md:col-span-6">
                     <label class="mb-1" for="expiryDate">Tanggal Berakhir</label>
-                    <input type="text" name="expiryDate" value="<%= r.expiryDate %>" class="border rounded-md border-gray-400 p-1 pl-2 font-thin text-sm" required placeholder="Masukkan tanggal promosi berakhir..">
+                    <input type="date" name="expiryDate" value="<%= moment.utc(r.expiryDate).format("YYYY-MM-DD") %>" class="border rounded-md border-gray-400 p-1 pl-2 font-thin text-sm" required placeholder="Masukkan tanggal promosi berakhir..">
                 </div>
             </div>
 

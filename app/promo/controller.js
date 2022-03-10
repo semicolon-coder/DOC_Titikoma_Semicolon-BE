@@ -1,10 +1,13 @@
+const moment =  require('moment');
 const Promo = require('./model');
+
+moment.locale('id');
 
 module.exports = {
     index: async (req, res) => {
         await Promo.find({})
             .then(r => {
-                res.render('promo/index', { r });
+                res.render('promo/index', { r, moment });
             })
             .catch(e => {
                 console.log(e);
@@ -15,7 +18,9 @@ module.exports = {
         res.render('promo/viewAdd');
     },
     actionAdd: async (req, res) => {
-        const { code, name, discountValue, status, startDate, expiryDate } = req.body
+        let { code, name, discountValue, status, startDate, expiryDate } = req.body
+        startDate = moment.utc(startDate).subtract('7', "hours").format()
+        expiryDate = moment.utc(expiryDate).subtract('7', "hours").format();
 
         await Promo.create({ code, name, discountValue, status, startDate, expiryDate })
             .then(r => {
@@ -31,7 +36,7 @@ module.exports = {
 
         await Promo.findById(_id)
             .then(r => {
-                res.render('promo/viewDetail', { r });
+                res.render('promo/viewDetail', { r, moment });
             })
             .catch(e => {
                 console.log(e);
@@ -40,7 +45,10 @@ module.exports = {
     },
     actionUpdate: async (req, res) => {
         const { _id } = req.params;
-        const { name, discountValue, status, startDate, expiryDate } = req.body
+        let { name, discountValue, status, startDate, expiryDate } = req.body
+
+        startDate = moment.utc(startDate).subtract('7', "hours").format()
+        expiryDate = moment.utc(expiryDate).subtract('7', "hours").format();
 
         await Promo.findByIdAndUpdate(_id, { name, discountValue, status, startDate, expiryDate })
             .then(r => {

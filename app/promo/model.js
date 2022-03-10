@@ -18,11 +18,11 @@ const promoSchema = new mongoose.Schema({
       required: true
     },
     startDate: {
-        type: String,
+        type: Date,
         required: true
     },
     expiryDate: {
-        type: String,
+        type: Date,
         required: true
     }
 })
