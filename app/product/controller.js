@@ -1,14 +1,87 @@
 const Product = require('./model');
+const Category = require('../category/model');
 
 module.exports = {
     index: async (req, res) => {
-        res.render('product/index');
+        await Product.find({})
+            .populate('category', 'name')
+            .then(r => {
+                res.render('product/index', { r });
+            })
+            .catch(e => {
+                console.log(e);
+                res.redirect('/');
+            })
     },
     viewAdd: async (req, res) => {
-        res.render('product/viewAdd');
+        await Category.find({})
+            .then(r => {
+                res.render('product/viewAdd', { r });
+            })
+            .catch(e => {
+                console.log(e);
+                res.redirect('/');
+            })
+    },
+    actionCreate: async (req, res) => {
+        const { productId, name, description, category, stock, status, price } = req.body;
+        const image = `${process.env.IMG_URL}/${req.file.filename}`;
+
+        await Product.create({ productId, name, description, category, stock, status, price, image })
+            .then(r => {
+                res.redirect('/product');
+            })
+            .catch(e => {
+                console.log(e);
+                res.redirect('/');
+            })
     },
     viewDetail: async (req, res) => {
-        const { _id } = req.params
-        res.render('product/viewDetail', { productId: _id });
+        const { _id } = req.params;
+
+        await Product.findById(_id)
+            .then(async product => {
+                await Category.find({})
+                    .then(category => {
+                        res.render('product/viewDetail', { product, category });
+                    })
+            })
+    },
+    actionUpdate: async (req, res) => {
+        const { _id } = req.params;
+        const { productId, name, description, category, stock, status, price } = req.body;
+
+        if(req.file !== undefined) {
+            const newImage = `${process.env.IMG_URL}/${req.file.filename}`;
+            await Product.findByIdAndUpdate(_id, { productId, name, description, category, stock, status, price, image: newImage })
+                .then(r => {
+                    return res.redirect('/product');
+                })
+                .catch(e => {
+                    console.log(e);
+                    return res.redirect('/');
+                })
+        } else {
+            await Product.findByIdAndUpdate(_id, { productId, name, description, category, stock, status, price })
+                .then(r => {
+                    return res.redirect('/product');
+                })
+                .catch(e => {
+                    console.log(e);
+                    return res.redirect('/');
+                })
+        }
+    },
+    actionDelete: async (req, res) => {
+        const { _id } = req.params;
+
+        await Product.findByIdAndDelete(_id)
+            .then(r => {
+                res.redirect('/product');
+            })
+            .catch(e => {
+                console.log(e);
+                res.redirect('/');
+            })
     }
 }

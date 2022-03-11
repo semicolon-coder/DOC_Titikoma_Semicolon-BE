@@ -12,39 +12,69 @@
 
 <div class="flex flex-col h-screen justify-between font-poppins lg:ml-72">
     <div class="h-auto m-[30px] bg-white rounded-md shadow-md overflow-hidden">
+        <form action="/product/add" enctype="multipart/form-data" method="post">
+            <div class="h-auto bg-gray-800 shadow-sm p-4">
+                <h2 class="text-white font-bold">Buat produk baru</h2>
+            </div>
 
-        <div class="h-auto bg-gray-800 shadow-sm p-4">
-            <h2 class="text-white font-bold">Buat produk baru</h2>
-        </div>
+            <div class="h-auto p-4 md:grid md:grid-cols-12 md:gap-2">
+                <div class="h-auto flex flex-col mb-3 md:col-span-4">
+                    <label class="mb-1" for="productId">ID Produk</label>
+                    <input type="text" value="SEMICOLON-" name="productId" class="border rounded-md border-gray-500 p-1 pl-2 font-thin text-sm"
+                           placeholder="Masukkan id produk..">
+                </div>
+                <div class="h-auto flex flex-col mb-3 md:col-span-6">
+                    <label class="mb-1" for="name">Nama Produk</label>
+                    <input type="text" name="name" class="border rounded-md border-gray-400 p-1 pl-2 font-thin text-sm"
+                           placeholder="Masukkan nama produk..">
+                </div>
+                <div class="h-auto flex flex-col mb-3 md:col-span-2">
+                    <label class="mb-1" for="status">Status</label>
+                    <select type="text" name="status" class="border rounded-md border-gray-400 p-1 pl-2 font-thin text-sm" required>
+                        <option value="true">Tersedia</option>
+                        <option value="false">Habis</option>
+                    </select>
+                </div>
+                <div class="h-auto flex flex-col mb-3 md:col-span-12">
+                    <label class="mb-1" for="description">Deskripsi</label>
+                    <textarea type="text" name="description" class="border rounded-md border-gray-400 p-1 pl-2 font-thin text-sm"
+                              placeholder="Masukkan deskripsi produk.."></textarea>
+                </div>
+                <div class="h-auto flex flex-col mb-3 md:col-span-4">
+                    <label class="mb-1" for="category">Kategori Produk</label>
+                    <select type="text" name="category" class="border rounded-md border-gray-400 p-1 pl-2 font-thin text-sm" required>
+                        <% r.map(item => { %>
+                            <option value="<%- item._id %>"><%- item.name %></option>
+                        <% }) %>
+                    </select>
+                </div>
+                <div class="h-auto flex flex-col mb-3 md:col-span-4">
+                    <label class="mb-1" for="stock">Stok Produk</label>
+                    <div class="flex flex-row justify-between">
+              <span onclick="subtraction()" class="border-y border-l border-gray-400 rounded-l-md p-1">
+                <svg class="w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path></svg>
+              </span>
+                        <input id="stock" type="number" name="stock" value="0" class="border border-gray-400 p-1 pl-2 font-thin text-sm text-center w-full">
+                        <span onclick="addition()" class="border-y border-r border-gray-400 rounded-r-md p-1" >
+                <svg class="w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+              </span>
+                    </div>
+                </div>
+                <div class="h-auto flex flex-col mb-3 md:col-span-4">
+                    <label class="mb-1" for="price">Harga</label>
+                    <input type="number" name="price" class="border rounded-md border-gray-400 p-1 pl-2 font-thin text-sm"
+                           placeholder="Masukkan harga produk..">
+                </div>
+                <div class="h-auto flex flex-col mb-3 md:col-span-12">
+                    <label class="mb-1" for="image">Foto produk</label>
+                    <input type="file" name="image" class="border rounded-md border-gray-400 p-1 font-thin text-sm" placeholder="Masukkan harga produk.." required>
+                </div>
+            </div>
 
-        <div class="h-auto p-4">
-            <form action="">
-                <div class="h-auto flex flex-col mb-3">
-                    <label class="mb-1" for="email">ID Produk</label>
-                    <input type="email" class="border rounded-md border-gray-500 p-1 pl-2 font-thin text-sm" placeholder="Masukkan id produk..">
-                </div>
-                <div class="h-auto flex flex-col mb-3">
-                    <label class="mb-1" for="email">Nama Produk</label>
-                    <input type="email" class="border rounded-md border-gray-400 p-1 pl-2 font-thin text-sm" placeholder="Masukkan nama produk..">
-                </div>
-                <div class="h-auto flex flex-col mb-3">
-                    <label class="mb-1" for="email">Kategori Produk</label>
-                    <input type="Kategori" class="border rounded-md border-gray-400 p-1 pl-2 font-thin text-sm" placeholder="Masukkan kategori produk..">
-                </div>
-                <div class="h-auto flex flex-col mb-3">
-                    <label class="mb-1" for="email">Stok Produk</label>
-                    <input type="Kategori" class="border rounded-md border-gray-400 p-1 pl-2 font-thin text-sm" placeholder="Masukkan stok produk..">
-                </div>
-                <div class="h-auto flex flex-col mb-3">
-                    <label class="mb-1" for="email">Status Produk</label>
-                    <input type="Kategori" class="border rounded-md border-gray-400 p-1 pl-2 font-thin text-sm" placeholder="Masukkan status produk..">
-                </div>
-            </form>
-        </div>
-
-        <div class="h-auto bg-gray-200 p-2 flex justify-end">
-            <button class="bg-gray-700 px-3 py-2 rounded-md hover:bg-gray-900 hover:shadow-md text-white transition text-sm"><a href="">Submit</a></button>
-        </div>
+            <div class="h-auto bg-gray-200 p-2 flex justify-end">
+                <button class="bg-gray-700 px-3 py-2 rounded-md hover:bg-gray-900 hover:shadow-md text-white transition text-sm">Submit</button>
+            </div>
+        </form>
     </div>
 
     <div class="bg-gray-700 p-5 font-poppins">
