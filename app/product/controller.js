@@ -1,5 +1,7 @@
 const Product = require('./model');
 const Category = require('../category/model');
+const multer = require('multer')
+const upload = multer().single('image')
 
 module.exports = {
     index: async (req, res) => {
@@ -25,16 +27,19 @@ module.exports = {
     },
     actionCreate: async (req, res) => {
         const { productId, name, description, category, stock, status, price } = req.body;
-        const image = `${process.env.IMG_URL}/${req.file.filename}`;
 
-        await Product.create({ productId, name, description, category, stock, status, price, image })
-            .then(r => {
-                res.redirect('/product');
-            })
-            .catch(e => {
-                console.log(e);
-                res.redirect('/');
-            })
+        if(req.file !== undefined) {
+            const image = `${process.env.IMG_URL}/${req.file.filename}`;
+            await Product.create({ productId, name, description, category, stock, status, price, image })
+                .then(r => {
+                    return res.redirect('/product');
+                })
+                .catch(e => {
+                    return res.redirect('/');
+                })
+        } else {
+            res.redirect('/');
+        }
     },
     viewDetail: async (req, res) => {
         const { _id } = req.params;
