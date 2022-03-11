@@ -16,6 +16,15 @@ module.exports = {
                 return res.status(500).json({ error: true, message: `Error: ${e.message}`, data: null});
             })
     },
+    getAllCategory: async (req, res) => {
+        await Category.find({})
+            .then(r => {
+                return res.status(200).json({ error: false, message: 'Berhasil mendapatkan semua kategori!', data: r});
+            })
+            .catch(e => {
+                return res.status(500).json({ error: true, message: `Error: ${e.message}`, data: null});
+            })
+    },
     addOrder: async (req, res) => {
         const { status, cart, price, tax, totalPrice, customer, payment } = req.body;
         const orderId = `INV-${new Date().getTime()}`;
@@ -34,7 +43,7 @@ module.exports = {
         await Order.findById(_id)
             .populate({path: 'cart.product', select: '_id productId name price'})
             .then(r => {
-                if(r === null) { return res.status(500).json({ error: true, message: `Error, ID tidak ditemukan!`, data: null}) }
+                if(r === null || r === {} || r === []) { return res.status(500).json({ error: true, message: `Error, ID tidak ditemukan!`, data: null}) }
                 return res.status(200).json({ error: false, message: 'Berhasil mendapatkan data order!', data: r});
             })
             .catch(e => {
@@ -44,11 +53,14 @@ module.exports = {
     getOrderByOrderId: async (req, res) => {
         const { orderId } = req.params;
 
-        await Order.find(orderId)
+        await Order.findOne({ orderId })
             .populate({path: 'cart.product', select: '_id productId name price'})
             .then(r => {
-                if(r === null) { return res.status(500).json({ error: true, message: `Error, ID tidak ditemukan!`, data: null}) }
-                return res.status(200).json({ error: false, message: 'Berhasil mendapatkan data order!', data: r[0]});
+                if(r === null || r === {} || r === []) {
+                    return res.status(500).json({ error: true, message: `Error, ID tidak ditemukan!`, data: null})
+                } else {
+                    return res.status(200).json({ error: false, message: 'Berhasil mendapatkan data order!', data: r});
+                }
             })
             .catch(e => {
                 return res.status(500).json({ error: true, message: `Error: ${e.message}`, data: null});
@@ -100,12 +112,21 @@ module.exports = {
                 return res.status(500).json({ error: true, message: `Error: ${e.message}`, data: null});
             })
     },
-    getTestimonial: async (req, res) => {
-        const { _id } = req.params;
-
-        await Testimonial.findById(_id)
+    getAllPromo: async (req, res) => {
+        await Promo.find({})
             .then(r => {
-                return res.status(200).json({ error: false, message: 'Berhasil mendapatkan data testimonial!', data: r});
+                return res.status(200).json({ error: false, message: 'Berhasil mendapatkan semua promo!', data: r});
+            })
+            .catch(e => {
+                return res.status(500).json({ error: true, message: `Error: ${e.message}`, data: null});
+            })
+    },
+    addTestimonial: async (req, res) => {
+        const { name, description } = req.body;
+
+        await Testimonial.create({ name, description })
+            .then(r => {
+                return res.status(200).json({ error: false, message: 'Berhasil input data testimonial!', data: r});
             })
             .catch(e => {
                 return res.status(500).json({ error: true, message: `Error: ${e.message}`, data: null});

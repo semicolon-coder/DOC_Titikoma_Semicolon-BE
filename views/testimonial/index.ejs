@@ -1,6 +1,6 @@
-<%- include('../parts/header.ejs') %>
+<%- include('../parts/header.ejs', { title: "Testimonial - TITIKOMA" }) %>
 <%- include('../parts/navbar.ejs') %>
-<%- include('../parts/sidebar.ejs') %>
+<%- include('../parts/sidebar.ejs', { position: 'testimonial' }) %>
 
 <div class="pt-[90px] h-auto shadow-md py-3 lg:ml-72">
     <div class="mx-[30px] text-gray-800 font-light">
@@ -31,17 +31,25 @@
                                     <th scope="col" class="px-6 py-3 text-sm text-left text-gray-800 font-medium tracking-wider uppercase">
                                         Testimonial
                                     </th>
+                                    <th scope="col" class="px-6 py-3 text-sm text-left text-gray-800 font-medium tracking-wider uppercase">
+                                        Tanggal/waktu input
+                                    </th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr class="bg-white border-b">
-                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
-                                        Ryan Adi
-                                    </td>
-                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
-                                        Recomended buat ajak teman/keluarga!
-                                    </td>
-                                </tr>
+                                <% r.map(item => { %>
+                                    <tr class="bg-white border-b">
+                                        <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
+                                            <%- item.name %>
+                                        </td>
+                                        <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap md:whitespace-normal">
+                                            <%- item.description %>
+                                        </td>
+                                        <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
+                                            <%- moment(item.createdAt).format('LLL'); %>
+                                        </td>
+                                    </tr>
+                                <% }) %>
                                 </tbody>
                             </table>
                         </div>

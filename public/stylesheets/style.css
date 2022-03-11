@@ -1153,6 +1153,10 @@ Ensure the default browser behavior of the `hidden` attribute.
     .md\:gap-2 {
         gap: 0.5rem;
     }
+
+    .md\:whitespace-normal {
+        white-space: normal;
+    }
 }
 
 @media (min-width: 1024px) {
