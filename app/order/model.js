@@ -6,29 +6,46 @@ const orderSchema = new mongoose.Schema({
         required: true
     },
     status: {
-        type: Number,
+        type: String,
         required: true
     },
-    cart: [{
-        product: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'product'
+    historyCart: [{
+        productId: {
+            type: String,
+            required: true
+        },
+        productName: {
+            type: String,
+            required: true
+        },
+        productPrice: {
+            type: Number,
+            required: true
         },
         qty: {
             type: Number,
             required: true
+        },
+        total: {
+            type: Number,
+            default: function () {
+                return this.productPrice * this.qty;
+            }
         }
     }],
     price: {
         type: Number,
         required: true
     },
+    discount: {
+      type: Number,
+      default: 0
+    },
     tax: {
         type: Number,
     },
     totalPrice: {
         type: Number,
-        required: true
     },
     customer: {
         name: {

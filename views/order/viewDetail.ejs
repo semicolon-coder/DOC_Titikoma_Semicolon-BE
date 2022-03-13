@@ -6,7 +6,7 @@
     <div class="mx-[30px] text-gray-800 font-light">
         <a href="/history-order" class="text-lg font-bold hover:underline hover:underline-offset-1">Histori Penjualan</a>
         >
-        <a href="/history-order" class="text-lg font-bold hover:underline hover:underline-offset-1"><%= productId %></a>
+        <a href="/history-order/<%- r._id %>" class="text-lg font-bold hover:underline hover:underline-offset-1"><%- r.orderId %></a>
     </div>
 </div>
 
@@ -18,14 +18,15 @@
                     <div class="flex-none py-2 w-[10px] bg-slate-600 rounded-md"></div>
                     <div class="flex-none flex flex-col">
                         <h1 class="flex-none ml-3 my-auto">Ubah status order</h1>
-                        <form action="">
+                        <form action="/history-order/<%- r._id %>/update?_method=PUT" method="post">
                             <div class="h-auto flex ml-3 mt-1 pb-2 flex-col">
-                                <select class="border rounded-md border-gray-500 p-1 pl-2">
-                                    <option value="active">Aktif</option>
-                                    <option value="process">Proses</option>
-                                    <option value="done">Selesai</option>
+                                <select name="status" class="border rounded-md border-gray-500 p-1 pl-2 text-sm">
+                                    <option value="Aktif" <%- r.status === 'Aktif' ? 'selected' : '' %>>Aktif</option>
+                                    <option value="Proses" <%- r.status === 'Proses' ? 'selected' : '' %>>Proses</option>
+                                    <option value="Selesai" <%- r.status === 'Selesai' ? 'selected' : '' %>>Selesai</option>
                                 </select>
                             </div>
+                            <button type="submit" class="mb-1 ml-3 bg-green-600 px-3 py-2 rounded-md hover:bg-green-800 hover:shadow-md text-white transition text-sm">Ubah Status</button>
                         </form>
                     </div>
                 </div>
@@ -38,26 +39,27 @@
                     <div class="flex-none mr-3 py-2 w-[10px] bg-slate-600 rounded-md"></div>
                     <div class="flex-none flex flex-col md:justify-between">
                         <h1>ID Transaksi</h1>
-                        <p class="text-gray-400"><%= productId %></p>
-                        <p>Status: <span class="text-green-300">Aktif</span></p>
+                        <p class="text-gray-400"><%- r.orderId %></p>
+                        <p class="text-gray-400"><%- moment(r.createdAt).format('LLL'); %></p>
+                        <p>Status: <span class="px-3 <%- r.status === 'Aktif' ? 'bg-green-300' : r.status === 'Proses' ? 'bg-yellow-300' : 'bg-red-300' %>"><%- r.status %></span></p>
                     </div>
                 </div>
                 <div class="flex flex-row mt-3 md:mt-0">
                     <div class="flex-none mr-3 py-2 w-[10px] bg-slate-600 rounded-md"></div>
                     <div class="flex-none flex flex-col md:justify-between">
                         <h1>Metode Pembayaran</h1>
-                        <p class="text-gray-400">E-Wallet</p>
-                        <p class="text-gray-400">ShopeePay</p>
-                        <p class="text-gray-400">082139113940</p>
+                        <p class="text-gray-400"><%- r.payment.category %></p>
+                        <p class="text-gray-400"><%- r.payment.name %></p>
+                        <p class="text-gray-400"><%- r.payment.accountNumber %></p>
                     </div>
                 </div>
                 <div class="flex flex-row mt-3 md:mt-0">
                     <div class="flex-none mr-3 py-2 w-[10px] bg-slate-600 rounded-md"></div>
                     <div class="flex-none flex flex-col">
                         <h1>Customer</h1>
-                        <p class="text-gray-400">Ryan Adi</p>
-                        <p class="text-gray-400">ryan@semicolon.coffee</p>
-                        <p class="text-gray-400">08213912123</p>
+                        <p class="text-gray-400"><%- r.customer.name %></p>
+                        <p class="text-gray-400"><%- r.customer.email %></p>
+                        <p class="text-gray-400"><%- r.customer.phoneNumber %></p>
                     </div>
                 </div>
             </div>
@@ -87,39 +89,33 @@
                                         Harga
                                     </th>
                                     <th scope="col" class="px-6 py-3 text-sm text-left text-gray-800 font-medium tracking-wider uppercase">
-                                        qty
+                                        Qty
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-sm text-left text-gray-800 font-medium tracking-wider uppercase">
+                                        Total
                                     </th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr class="bg-white border-b">
-                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
-                                        SEMICOLON-001
-                                    </td>
-                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
-                                        Potato Wedges
-                                    </td>
-                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
-                                        Rp 22,500
-                                    </td>
-                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
-                                        1
-                                    </td>
-                                </tr>
-                                <tr class="bg-white border-b">
-                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
-                                        SEMICOLON-004
-                                    </td>
-                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
-                                        Siomay
-                                    </td>
-                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
-                                        Rp 13,000
-                                    </td>
-                                    <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
-                                        2
-                                    </td>
-                                </tr>
+                                <% r.historyCart.map(item => { %>
+                                    <tr class="bg-white border-b">
+                                        <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
+                                            <%- item.productId %>
+                                        </td>
+                                        <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
+                                            <%- item.productName %>
+                                        </td>
+                                        <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
+                                            Rp <%- new Intl.NumberFormat('de-DE').format(item.productPrice) %>
+                                        </td>
+                                        <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
+                                            <%- item.qty %>
+                                        </td>
+                                        <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
+                                            Rp <%- new Intl.NumberFormat('de-DE').format(item.total) %>
+                                        </td>
+                                    </tr>
+                                <% }) %>
                                 </tbody>
                             </table>
                         </div>
@@ -134,28 +130,28 @@
                     <div class="flex-none mr-3 py-2 w-[10px] bg-slate-600 rounded-md"></div>
                     <div class="flex-none flex flex-col md:justify-between">
                         <h1>Total belum pajak</h1>
-                        <p class="text-red-400">Rp 48,500</p>
+                        <p class="text-red-400">Rp <%- new Intl.NumberFormat('de-DE').format(r.price) %></p>
                     </div>
                 </div>
                 <div class="flex flex-row mt-3 md:mt-0">
                     <div class="flex-none mr-3 py-2 w-[10px] bg-slate-600 rounded-md"></div>
                     <div class="flex-none flex flex-col md:justify-between">
                         <h1>Diskon</h1>
-                        <p class="text-red-400">Rp 5,000</p>
+                        <p class="text-red-400">Rp <%- new Intl.NumberFormat('de-DE').format(r.discount) %></p>
                     </div>
                 </div>
                 <div class="flex flex-row mt-3 md:mt-0">
                     <div class="flex-none mr-3 py-2 w-[10px] bg-slate-600 rounded-md"></div>
                     <div class="flex-none flex flex-col md:justify-between">
                         <h1>Pajak</h1>
-                        <p class="text-red-400">10%</p>
+                        <p class="text-red-400"><%- r.tax %>%</p>
                     </div>
                 </div>
                 <div class="flex flex-row mt-3 md:mt-0">
                     <div class="flex-none mr-3 py-2 w-[10px] bg-slate-600 rounded-md"></div>
                     <div class="flex-none flex flex-col">
                         <h1>Total</h1>
-                        <p class="text-green-400">Rp 52,850</p>
+                        <p class="text-green-400">Rp <%- new Intl.NumberFormat('de-DE').format(r.totalPrice) %></p>
                     </div>
                 </div>
             </div>

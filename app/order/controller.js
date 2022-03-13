@@ -1,12 +1,40 @@
+const moment = require('moment');
 const Order = require('./model');
 
 module.exports = {
     index: async (req, res) => {
-        res.render('order/index', {position: 'history-order', title: "History Penjualan - TITIKOMA"});
+        await Order.find({})
+            .then(r => {
+                res.render('order/index', { r, moment });
+            })
+            .catch(e => {
+                console.log(e);
+                res.redirect('/');
+            })
     },
     viewDetail: async (req, res) => {
         const { _id } = req.params;
 
-        res.render('order/viewDetail', { productId: _id });
+        await Order.findById(_id)
+            .then(r => {
+                res.render('order/viewDetail', { r, moment });
+            })
+            .catch(e => {
+                console.log(e);
+                res.redirect('/');
+            })
+    },
+    updateOrder: async (req, res) => {
+        const { _id } = req.params;
+        const { status } = req.body;
+
+        await Order.findByIdAndUpdate(_id, { status })
+            .then(r => {
+                res.redirect('/history-order');
+            })
+            .catch(e => {
+                console.log(e);
+                res.redirect('/')
+            })
     }
 }

@@ -26,10 +26,10 @@ module.exports = {
             })
     },
     addOrder: async (req, res) => {
-        const { status, cart, price, tax, totalPrice, customer, payment } = req.body;
+        const { status, historyCart, price, discount, tax, totalPrice, customer, payment } = req.body;
         const orderId = `INV-${new Date().getTime()}`;
 
-        await Order.create({ orderId, status, cart, price, tax, totalPrice, customer, payment })
+        await Order.create({ orderId, status, historyCart, price, discount, tax, totalPrice, customer, payment })
             .then(r => {
                 return res.status(200).json({ error: false, message: 'Berhasil membuat data order!', data: r });
             })
@@ -41,7 +41,7 @@ module.exports = {
         const { _id } = req.params;
 
         await Order.findById(_id)
-            .populate({path: 'cart.product', select: '_id productId name price'})
+            // .populate({path: 'cart.product', select: '_id productId name price'})
             .then(r => {
                 if(r === null || r === {} || r === []) { return res.status(500).json({ error: true, message: `Error, ID tidak ditemukan!`, data: null}) }
                 return res.status(200).json({ error: false, message: 'Berhasil mendapatkan data order!', data: r});
@@ -54,7 +54,7 @@ module.exports = {
         const { orderId } = req.params;
 
         await Order.findOne({ orderId })
-            .populate({path: 'cart.product', select: '_id productId name price'})
+            // .populate({path: 'cart.product', select: '_id productId name price'})
             .then(r => {
                 if(r === null || r === {} || r === []) {
                     return res.status(500).json({ error: true, message: `Error, ID tidak ditemukan!`, data: null})

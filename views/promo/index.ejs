@@ -59,7 +59,7 @@
                                             <%- item.name %>
                                         </td>
                                         <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
-                                            <%- item.discountValue %>
+                                            Rp <%- new Intl.NumberFormat('de-DE').format(item.discountValue) %>
                                         </td>
                                         <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
                                             <span class="h-3 py-1 px-3 rounded-xl <%- item.status === true ? 'bg-green-300' : 'bg-red-300' %>"><%- item.status === true ? 'Aktif' : 'Non Aktif' %></span>
