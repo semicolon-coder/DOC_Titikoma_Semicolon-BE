@@ -1,4 +1,4 @@
-const moment =  require('moment');
+const moment = require('moment');
 const Promo = require('./model');
 
 moment.locale('id');
@@ -11,7 +11,7 @@ module.exports = {
             })
             .catch(e => {
                 console.log(e);
-                res.redirect('/');
+                res.redirect('/promo');
             })
     },
     viewAdd: async (req, res) => {
@@ -28,7 +28,7 @@ module.exports = {
             })
             .catch(e => {
                 console.log(e);
-                res.redirect('/');
+                res.redirect('/promo');
             })
     },
     viewDetail: async (req, res) => {
@@ -40,7 +40,7 @@ module.exports = {
             })
             .catch(e => {
                 console.log(e);
-                res.redirect('/');
+                res.redirect('/promo');
             })
     },
     actionUpdate: async (req, res) => {
@@ -56,7 +56,7 @@ module.exports = {
             })
             .catch(e => {
                 console.log(e);
-                res.redirect('/');
+                res.redirect('/promo');
             })
     },
     actionDelete: async (req, res) => {
@@ -68,7 +68,7 @@ module.exports = {
             })
             .catch(e => {
                 console.log(e);
-                res.redirect('/');
+                res.redirect('/promo');
             })
     }
 }

@@ -4,6 +4,7 @@ const Order = require('./model');
 module.exports = {
     index: async (req, res) => {
         await Order.find({})
+            .select('_id orderId customer payment totalPrice status createdAt')
             .then(r => {
                 res.render('order/index', { r, moment });
             })
@@ -21,7 +22,7 @@ module.exports = {
             })
             .catch(e => {
                 console.log(e);
-                res.redirect('/');
+                res.redirect('/history-order');
             })
     },
     updateOrder: async (req, res) => {
@@ -34,7 +35,7 @@ module.exports = {
             })
             .catch(e => {
                 console.log(e);
-                res.redirect('/')
+                res.redirect('/history-order')
             })
     }
 }

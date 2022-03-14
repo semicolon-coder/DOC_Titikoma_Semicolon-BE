@@ -1,0 +1,33 @@
+<%- include('../parts/header.ejs', { title: "Login - TITIKOMA" }) %>
+
+<body class="bg-gray-700 font-poppins">
+    <div class="flex justify-center">
+        <div class="w-auto rounded-md shadow-md p-3 max-w-md bg-white my-28">
+            <div class="p-3">
+                <div class="bg-gray-700 rounded-md h-auto p-4">
+                    <img src="/assets/semicolon-logo.png" alt="titikoma-logo">
+                </div>
+                <h1 class="text-center text-2xl mt-8 font-bold text-gray-800">Masuk sebagai Admin</h1>
+                <form action="/auth/signin" method="post">
+                    <div class="h-auto mb-3 flex flex-col mt-5">
+                        <label class="mb-1" for="email">Email</label>
+                        <input type="text" name="email"
+                               class="border rounded-md border-gray-400 p-1 pl-2 font-thin text-sm"
+                               placeholder="Masukkan email.."/>
+                    </div>
+                    <div class="h-auto mb-6 flex flex-col">
+                        <label class="mb-1" for="password">Password</label>
+                        <input type="password" name="password"
+                               class="border rounded-md border-gray-400 p-1 pl-2 font-thin text-sm"
+                               placeholder="Masukkan password.."/>
+                    </div>
+                    <div class="h-auto bg-green-500 rounded-md text-center hover:bg-green-700 transition duration-500">
+                        <button type="submit" class="text-white font-medium text-lg m-2">Masuk</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+<%- include('../parts/footer.ejs') %>

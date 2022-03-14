@@ -488,6 +488,10 @@ Ensure the default browser behavior of the `hidden` attribute.
     margin: 30px;
 }
 
+.m-2 {
+    margin: 0.5rem;
+}
+
 .my-auto {
     margin-top: auto;
     margin-bottom: auto;
@@ -501,6 +505,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .mx-\[30px\] {
     margin-left: 30px;
     margin-right: 30px;
+}
+
+.my-28 {
+    margin-top: 7rem;
+    margin-bottom: 7rem;
 }
 
 .ml-\[25px\] {
@@ -527,8 +536,24 @@ Ensure the default browser behavior of the `hidden` attribute.
     margin-top: 1rem;
 }
 
+.mt-8 {
+    margin-top: 2rem;
+}
+
+.mt-5 {
+    margin-top: 1.25rem;
+}
+
+.mb-6 {
+    margin-bottom: 1.5rem;
+}
+
 .mt-1 {
     margin-top: 0.25rem;
+}
+
+.mb-2 {
+    margin-bottom: 0.5rem;
 }
 
 .mr-3 {
@@ -631,6 +656,10 @@ Ensure the default browser behavior of the `hidden` attribute.
     width: 20%;
 }
 
+.w-auto {
+    width: auto;
+}
+
 .w-\[281px\] {
     width: 281px;
 }
@@ -641,6 +670,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .min-w-full {
     min-width: 100%;
+}
+
+.max-w-md {
+    max-width: 28rem;
 }
 
 .flex-none {
@@ -879,6 +912,10 @@ Ensure the default browser behavior of the `hidden` attribute.
     padding: 30px;
 }
 
+.p-3 {
+    padding: 0.75rem;
+}
+
 .px-\[30px\] {
     padding-left: 30px;
     padding-right: 30px;
@@ -964,6 +1001,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-xl {
     font-size: 1.25rem;
     line-height: 1.75rem;
+}
+
+.text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
 }
 
 .font-normal {
@@ -1053,6 +1095,10 @@ Ensure the default browser behavior of the `hidden` attribute.
     transition-duration: 200ms;
 }
 
+.duration-500 {
+    transition-duration: 500ms;
+}
+
 .hover\:bg-gray-700:hover {
     --tw-bg-opacity: 1;
     background-color: rgb(55 65 81 / var(--tw-bg-opacity));
@@ -1071,6 +1117,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .hover\:bg-green-800:hover {
     --tw-bg-opacity: 1;
     background-color: rgb(22 101 52 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-green-700:hover {
+    --tw-bg-opacity: 1;
+    background-color: rgb(21 128 61 / var(--tw-bg-opacity));
 }
 
 .hover\:text-white:hover {

@@ -12,7 +12,7 @@ module.exports = {
             })
             .catch(e => {
                 console.log(e);
-                res.redirect('/');
+                res.redirect('/product');
             })
     },
     viewAdd: async (req, res) => {
@@ -22,7 +22,7 @@ module.exports = {
             })
             .catch(e => {
                 console.log(e);
-                res.redirect('/');
+                res.redirect('/product');
             })
     },
     actionCreate: async (req, res) => {
@@ -35,10 +35,10 @@ module.exports = {
                     return res.redirect('/product');
                 })
                 .catch(e => {
-                    return res.redirect('/');
+                    return res.redirect('/product');
                 })
         } else {
-            res.redirect('/');
+            res.redirect('/product');
         }
     },
     viewDetail: async (req, res) => {
@@ -64,7 +64,7 @@ module.exports = {
                 })
                 .catch(e => {
                     console.log(e);
-                    return res.redirect('/');
+                    return res.redirect('/product');
                 })
         } else {
             await Product.findByIdAndUpdate(_id, { productId, name, description, category, stock, status, price })
@@ -73,7 +73,7 @@ module.exports = {
                 })
                 .catch(e => {
                     console.log(e);
-                    return res.redirect('/');
+                    return res.redirect('/product');
                 })
         }
     },
@@ -86,7 +86,7 @@ module.exports = {
             })
             .catch(e => {
                 console.log(e);
-                res.redirect('/');
+                res.redirect('/product');
             })
     }
 }

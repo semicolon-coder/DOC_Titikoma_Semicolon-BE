@@ -31,6 +31,7 @@ const fileFilter = (req, file, cb) => {
 }
 
 const APIRouter = require('./api/routes');
+const authRouter = require('./app/auth/router');
 const dashboardRouter = require('./app/dashboard/router');
 const categoryRouter = require('./app/category/router');
 const orderRouter = require('./app/order/router');
@@ -53,12 +54,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(multer({ storage: fileStorage, fileFilter }).single('image'))
 
-// temporary routes
-app.get('/', (req, res) => {
-  res.redirect('/dashboard');
-})
+app.use('/', dashboardRouter);
 app.use('/api', APIRouter);
-app.use('/dashboard', dashboardRouter);
+app.use('/auth', authRouter);
 app.use('/category', categoryRouter);
 app.use('/history-order', orderRouter);
 app.use('/product', productRouter);

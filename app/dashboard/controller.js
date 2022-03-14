@@ -42,7 +42,7 @@ module.exports = {
             ])
 
         await Order.find({})
-            .select('_id orderId customer payment totalPrice status')
+            .select('_id orderId customer payment totalPrice status createdAt')
             .sort({createdAt: 'descending'})
             .limit(10)
             .then(async dataTable => {
@@ -63,7 +63,7 @@ module.exports = {
                     }
                 }
 
-                res.render('dashboard/index', { moment, dataTable, dataThisMonth, dataThisDay });
+                res.render('dashboard/index', { dataTable, dataThisMonth, dataThisDay, moment });
             })
     }
 }
