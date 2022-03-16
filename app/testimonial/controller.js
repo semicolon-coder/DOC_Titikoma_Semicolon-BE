@@ -5,6 +5,7 @@ moment.locale('id');
 
 module.exports = {
     index: async (req, res) => {
+        // Query get all testimonial data
         await Testimonial.find({})
             .then(r => {
                 res.render('testimonial/index', { r, moment });

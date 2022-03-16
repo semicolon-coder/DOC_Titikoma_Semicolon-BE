@@ -1,13 +1,14 @@
 <%- include('../parts/header.ejs', { title: "Login - TITIKOMA" }) %>
 
 <body class="bg-gray-700 font-poppins">
-    <div class="flex justify-center">
+    <div class="flex justify-center px-7">
         <div class="w-auto rounded-md shadow-md p-3 max-w-md bg-white my-28">
             <div class="p-3">
                 <div class="bg-gray-700 rounded-md h-auto p-4">
                     <img src="/assets/semicolon-logo.png" alt="titikoma-logo">
                 </div>
                 <h1 class="text-center text-2xl mt-8 font-bold text-gray-800">Masuk sebagai Admin</h1>
+                <%- include('../parts/alert.ejs') %>
                 <form action="/auth/signin" method="post">
                     <div class="h-auto mb-3 flex flex-col mt-5">
                         <label class="mb-1" for="email">Email</label>

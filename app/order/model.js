@@ -28,6 +28,7 @@ const orderSchema = new mongoose.Schema({
         },
         total: {
             type: Number,
+            // Total product price * quantity
             default: function () {
                 return this.productPrice * this.qty;
             }

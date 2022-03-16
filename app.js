@@ -6,13 +6,17 @@ const logger = require('morgan');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 const multer = require('multer');
+const session = require('express-session');
+const flash = require('connect-flash');
 require('dotenv').config();
 
+// Connect to database MongoDB
 mongoose.connect(process.env.DB_URI, {useNewUrlParser: true, useUnifiedTopology: true, retryWrites: false}, (e) => {
   if(e) { throw e }
   console.log('Connected to database!');
 })
 
+// Create multer for storage when user uploaded the file
 const fileStorage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, 'public/images');
@@ -22,6 +26,7 @@ const fileStorage = multer.diskStorage({
   }
 })
 
+// Filtering file that user uploaded
 const fileFilter = (req, file, cb) => {
   if(file.mimetype === 'image/png' || file.mimetype === 'image/jpg' || file.mimetype === 'image/jpeg') {
     cb(null, true)
@@ -30,6 +35,7 @@ const fileFilter = (req, file, cb) => {
   }
 }
 
+// Require router for page routes
 const APIRouter = require('./api/routes');
 const authRouter = require('./app/auth/router');
 const dashboardRouter = require('./app/dashboard/router');
@@ -46,14 +52,22 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(methodOverride('_method'));
+app.use(flash());
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({
+  secret: process.env.JWT_KEY,
+  resave: false,
+  saveUninitialized: true,
+  cookie: { maxAge: 60000 }
+}))
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(multer({ storage: fileStorage, fileFilter }).single('image'))
 
+// Assign the routes
 app.use('/', dashboardRouter);
 app.use('/api', APIRouter);
 app.use('/auth', authRouter);
