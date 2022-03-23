@@ -8,6 +8,7 @@ const methodOverride = require('method-override');
 const multer = require('multer');
 const session = require('express-session');
 const flash = require('connect-flash');
+const cors = require('cors');
 require('dotenv').config();
 
 // Connect to database MongoDB
@@ -35,6 +36,10 @@ const fileFilter = (req, file, cb) => {
   }
 }
 
+const app = express();
+
+app.use(cors());
+
 // Require router for page routes
 const APIRouter = require('./api/routes');
 const authRouter = require('./app/auth/router');
@@ -44,8 +49,6 @@ const orderRouter = require('./app/order/router');
 const productRouter = require('./app/product/router');
 const promoRouter = require('./app/promo/router');
 const testimonialRouter = require('./app/testimonial/router');
-
-const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
