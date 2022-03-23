@@ -20,7 +20,7 @@ router.get('/category', getAllCategory);
 router.post('/order/add', addOrder);
 router.get('/order/:_id', getOrderById);
 router.get('/order/order-id/:orderId', getOrderByOrderId);
-router.get('/product', getAllProduct)
+router.get('/product', getAllProduct);
 router.get('/product/:_id', getProductById);
 router.get('/product/product-id/:productId', getProductByProductId);
 router.get('/promo/:_id', getPromo);

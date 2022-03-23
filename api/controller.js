@@ -91,14 +91,28 @@ module.exports = {
             })
     },
     getAllProduct: async (req, res) => {
-        await Product.find({  })
-            .populate('category')
-            .then(r => {
-                return res.status(200).json({ error: false, message: 'Berhasil mendapatkan semua data produk!', data: r});
-            })
-            .catch(e => {
-                return res.status(500).json({ error: true, message: `Error: ${e.message}`, data: null});
-            })
+        const { view } = req.query;
+
+        if(view === 'popular') {
+            await Product.find({})
+                .limit(4)
+                .select('_id name price image')
+                .then(r => {
+                    return res.status(200).json({ error: false, message: 'Berhasil mendapatkan semua data produk yang populer!', data: r});
+                })
+                .catch(e => {
+                    return res.status(500).json({ error: true, message: `Error: ${e.message}`, data: null});
+                })
+        } else {
+            await Product.find({  })
+                .populate('category')
+                .then(r => {
+                    return res.status(200).json({ error: false, message: 'Berhasil mendapatkan semua data produk!', data: r});
+                })
+                .catch(e => {
+                    return res.status(500).json({ error: true, message: `Error: ${e.message}`, data: null});
+                })
+        }
     },
     getPromo: async (req, res) => {
         const { _id } = req.params;
