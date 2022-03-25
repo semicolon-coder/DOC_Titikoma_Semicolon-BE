@@ -11,7 +11,7 @@ module.exports = {
 
         // Query find all order data with selected fields
         await Order.find({})
-            .select('_id orderId customer payment totalPrice status createdAt')
+            .select('_id orderId customer payment total status createdAt')
             .then(r => {
                 res.render('order/index', { r, moment, alert });
             })

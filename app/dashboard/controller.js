@@ -24,7 +24,7 @@ module.exports = {
                         // Sum of total order created in this month
                         count: { $sum: 1 },
                         // Sum of total price in this month
-                        value: { $sum: '$totalPrice' }
+                        value: { $sum: '$total' }
                     }
                 }
             ])
@@ -48,14 +48,14 @@ module.exports = {
                         // Sum of total order created in this day
                         count: { $sum: 1 },
                         // Sum of total price in this day
-                        value: { $sum: '$totalPrice' }
+                        value: { $sum: '$total' }
                     }
                 }
             ])
 
         // Query find all order data with selected field
         await Order.find({})
-            .select('_id orderId customer payment totalPrice status createdAt')
+            .select('_id orderId customer payment total status createdAt')
             // Sort to descending because we want to see latest transaction/order
             .sort({createdAt: 'descending'})
             // Only 10 latest transaction will be show to dashboard page

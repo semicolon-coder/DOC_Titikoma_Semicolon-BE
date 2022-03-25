@@ -130,7 +130,7 @@
                     <div class="flex-none mr-3 py-2 w-[10px] bg-slate-600 rounded-md"></div>
                     <div class="flex-none flex flex-col md:justify-between">
                         <h1>Total belum pajak</h1>
-                        <p class="text-red-400">Rp <%- new Intl.NumberFormat('de-DE').format(r.price) %></p>
+                        <p class="text-red-400">Rp <%- new Intl.NumberFormat('de-DE').format(r.subtotal) %></p>
                     </div>
                 </div>
                 <div class="flex flex-row mt-3 md:mt-0">
@@ -144,14 +144,14 @@
                     <div class="flex-none mr-3 py-2 w-[10px] bg-slate-600 rounded-md"></div>
                     <div class="flex-none flex flex-col md:justify-between">
                         <h1>Pajak</h1>
-                        <p class="text-red-400"><%- r.tax %>%</p>
+                        <p class="text-red-400">Rp <%- new Intl.NumberFormat('de-DE').format(r.tax) %></p>
                     </div>
                 </div>
                 <div class="flex flex-row mt-3 md:mt-0">
                     <div class="flex-none mr-3 py-2 w-[10px] bg-slate-600 rounded-md"></div>
                     <div class="flex-none flex flex-col">
                         <h1>Total</h1>
-                        <p class="text-green-400">Rp <%- new Intl.NumberFormat('de-DE').format(r.totalPrice) %></p>
+                        <p class="text-green-400">Rp <%- new Intl.NumberFormat('de-DE').format(r.total) %></p>
                     </div>
                 </div>
             </div>

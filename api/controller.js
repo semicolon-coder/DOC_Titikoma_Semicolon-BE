@@ -26,15 +26,16 @@ module.exports = {
             })
     },
     addOrder: async (req, res) => {
-        const { historyCart, price, discount, tax, totalPrice, customer, payment } = req.body;
+        const { historyCart, historyPromo, subtotal, discount, tax, total, customer, payment } = req.body;
         const orderId = `INV-${new Date().getTime()}`;
         const status = 'Aktif';
 
-        await Order.create({ orderId, status, historyCart, price, discount, tax, totalPrice, customer, payment })
+        await Order.create({ orderId, status, historyCart, historyPromo, subtotal, discount, tax, total, customer, payment })
             .then(r => {
                 return res.status(200).json({ error: false, message: 'Berhasil membuat data order!', data: r });
             })
             .catch(e => {
+                console.log(e)
                 return res.status(500).json({ error: true, message: `Error: ${e.message}`, data: null });
             })
     },

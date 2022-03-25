@@ -65,7 +65,7 @@
                                             <%- item.payment.name %>
                                         </td>
                                         <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
-                                            Rp <%- new Intl.NumberFormat('de-DE').format(item.totalPrice) %>
+                                            Rp <%- new Intl.NumberFormat('de-DE').format(item.total) %>
                                         </td>
                                         <td class="py-4 px-6 text-sm font-medium text-gray-800 whitespace-nowrap">
                                             <span class="h-3 py-1 px-3 rounded-xl <%- item.status === 'Aktif' ? 'bg-green-300' : item.status === 'Proses' ? 'bg-yellow-300' : 'bg-red-300' %>"><%- item.status  %></span>
