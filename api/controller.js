@@ -114,7 +114,19 @@ module.exports = {
                 })
         }
     },
-    getPromo: async (req, res) => {
+    getPromoByCode: async (req, res) => {
+      const { code } = req.params;
+
+        await Promo.findOne({ code })
+            .then(r => {
+                if(r === null) { return res.status(500).json({ error: true, message: `Error, ID tidak ditemukan!`, data: null}); }
+                return res.status(200).json({ error: false, message: 'Berhasil mendapatkan data promo!', data: r});
+            })
+            .catch(e => {
+                return res.status(500).json({ error: true, message: `Error: ${e.message}`, data: null});
+            })
+    },
+    getPromoById: async (req, res) => {
         const { _id } = req.params;
 
         await Promo.findById(_id)

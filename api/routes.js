@@ -9,7 +9,8 @@ const {
     getAllProduct,
     getProductById,
     getProductByProductId,
-    getPromo,
+    getPromoByCode,
+    getPromoById,
     getAllPromo,
     addTestimonial,
     getAllTestimonial
@@ -23,7 +24,8 @@ router.get('/order/order-id/:orderId', getOrderByOrderId);
 router.get('/product', getAllProduct);
 router.get('/product/:_id', getProductById);
 router.get('/product/product-id/:productId', getProductByProductId);
-router.get('/promo/:_id', getPromo);
+router.get('/promo/code/:code', getPromoByCode)
+router.get('/promo/:_id', getPromoById);
 router.get('/promo', getAllPromo);
 router.post('/testimonial/add', addTestimonial);
 router.get('/testimonial', getAllTestimonial);
