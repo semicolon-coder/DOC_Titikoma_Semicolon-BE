@@ -26,8 +26,9 @@ module.exports = {
             })
     },
     addOrder: async (req, res) => {
-        const { status, historyCart, price, discount, tax, totalPrice, customer, payment } = req.body;
+        const { historyCart, price, discount, tax, totalPrice, customer, payment } = req.body;
         const orderId = `INV-${new Date().getTime()}`;
+        const status = 'Aktif';
 
         await Order.create({ orderId, status, historyCart, price, discount, tax, totalPrice, customer, payment })
             .then(r => {
@@ -96,7 +97,7 @@ module.exports = {
         if(view === 'popular') {
             await Product.find({})
                 .limit(4)
-                .select('_id name price image')
+                .select('_id name price image productId')
                 .then(r => {
                     return res.status(200).json({ error: false, message: 'Berhasil mendapatkan semua data produk yang populer!', data: r});
                 })

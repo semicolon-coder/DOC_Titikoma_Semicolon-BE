@@ -34,18 +34,18 @@ const orderSchema = new mongoose.Schema({
             }
         }
     }],
-    price: {
+    subtotal: {
         type: Number,
         required: true
     },
     discount: {
-      type: Number,
-      default: 0
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'category'
     },
     tax: {
         type: Number,
     },
-    totalPrice: {
+    total: {
         type: Number,
     },
     customer: {
