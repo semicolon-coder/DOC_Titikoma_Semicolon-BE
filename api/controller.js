@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const Category = require('../app/category/model');
 const Order = require('../app/order/model');
 const Product = require('../app/product/model');
@@ -94,13 +95,36 @@ module.exports = {
     },
     getAllProduct: async (req, res) => {
         const { view } = req.query;
+        const categoryMatch = await Category.find({})
+            .then(r => {
+                return r.find((item) =>  item._id.toString() === view );
+            })
 
         if(view === 'popular') {
             await Product.find({})
                 .limit(4)
                 .select('_id name price image productId')
                 .then(r => {
-                    return res.status(200).json({ error: false, message: 'Berhasil mendapatkan semua data produk yang populer!', data: r});
+                    return res.status(200).json({
+                        error: false,
+                        message: 'Berhasil mendapatkan semua data produk yang populer!',
+                        data: r
+                    });
+                })
+                .catch(e => {
+                    return res.status(500).json({error: true, message: `Error: ${e.message}`, data: null});
+                })
+        } else if (categoryMatch) {
+            await Product.find({})
+                .populate({
+                    path: 'category',
+                    match: { '_id': categoryMatch._id }
+                })
+                .then(r => {
+                    const filteredProduct = r.filter((item) => {
+                        return item.category !== null
+                    })
+                    return res.status(200).json({ error: false, message: 'Berhasil mendapatkan semua data produk!', data: filteredProduct});
                 })
                 .catch(e => {
                     return res.status(500).json({ error: true, message: `Error: ${e.message}`, data: null});
