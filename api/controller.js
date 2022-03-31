@@ -102,13 +102,14 @@ module.exports = {
 
         if(view === 'popular') {
             await Product.find({})
-                .limit(4)
-                .select('_id name price image productId')
+                .select('_id name price status image productId')
                 .then(r => {
+                    const filteredProduct = r.filter((item) => item.status !== false)
+
                     return res.status(200).json({
                         error: false,
                         message: 'Berhasil mendapatkan semua data produk yang populer!',
-                        data: r
+                        data: filteredProduct.slice(0,4)
                     });
                 })
                 .catch(e => {
@@ -122,7 +123,9 @@ module.exports = {
                 })
                 .then(r => {
                     const filteredProduct = r.filter((item) => {
-                        return item.category !== null
+                        if(item.status !== false) {
+                            return item.category !== null
+                        }
                     })
                     return res.status(200).json({ error: false, message: 'Berhasil mendapatkan semua data produk!', data: filteredProduct});
                 })
@@ -133,7 +136,11 @@ module.exports = {
             await Product.find({  })
                 .populate('category')
                 .then(r => {
-                    return res.status(200).json({ error: false, message: 'Berhasil mendapatkan semua data produk!', data: r});
+                    const filteredProduct = r.filter((item) => {
+                        return item.status !== false
+                    })
+
+                    return res.status(200).json({ error: false, message: 'Berhasil mendapatkan semua data produk!', data: filteredProduct});
                 })
                 .catch(e => {
                     return res.status(500).json({ error: true, message: `Error: ${e.message}`, data: null});
