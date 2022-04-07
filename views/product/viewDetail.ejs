@@ -30,7 +30,7 @@
                 </div>
                 <div class="h-auto flex flex-col mb-3 md:col-span-2">
                     <label class="mb-1" for="status">Status</label>
-                    <select type="text" name="status" class="border rounded-md border-gray-400 p-1 pl-2 font-thin text-sm" required>
+                    <select disabled type="text" name="status" class="border rounded-md border-gray-400 p-1 pl-2 font-thin text-sm" required>
                         <option value="true" <%- product.status ? 'selected' : '' %>>Tersedia</option>
                         <option value="false" <%- product.status ? '' : 'selected' %>>Habis</option>
                     </select>
@@ -51,13 +51,13 @@
                 <div class="h-auto flex flex-col mb-3 md:col-span-4">
                     <label class="mb-1" for="stock">Stok Produk</label>
                     <div class="flex flex-row justify-between">
-                  <span onclick="subtraction()" class="border-y border-l border-gray-400 rounded-l-md p-1">
+                  <button id="minus" type="button" class="border-y border-l border-gray-400 rounded-l-md p-1">
                     <svg class="w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path></svg>
-                  </span>
-                        <input id="stock" type="number" name="stock" value="<%- product.stock %>" class="border border-gray-400 p-1 pl-2 font-thin text-sm text-center w-full">
-                        <span onclick="addition()" class="border-y border-r border-gray-400 rounded-r-md p-1" >
+                  </button>
+                        <input id="stock" type="number" name="stock" min="0" value="<%- product.stock %>" class="border border-gray-400 p-1 pl-2 font-thin text-sm text-center w-full">
+                        <button id="plus" type="button" class="border-y border-r border-gray-400 rounded-r-md p-1" >
                     <svg class="w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
-                  </span>
+                  </button>
                     </div>
                 </div>
                 <div class="h-auto flex flex-col mb-3 md:col-span-4">

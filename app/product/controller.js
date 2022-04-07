@@ -77,7 +77,8 @@ module.exports = {
     },
     actionUpdate: async (req, res) => {
         const { _id } = req.params;
-        const { productId, name, description, category, stock, status, price } = req.body;
+        const { productId, name, description, category, stock, price } = req.body;
+        const status = stock > 0;
 
         // if file not equal to undefined add image to query
         if(req.file !== undefined) {

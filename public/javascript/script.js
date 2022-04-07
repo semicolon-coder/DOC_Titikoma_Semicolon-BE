@@ -2,12 +2,20 @@ function openSidebar() {
     document.querySelector('#sidebar').classList.toggle('-left-72')
 }
 
-function addition() {
-    let number = document.getElementById('stock');
-    number.value = parseInt(number.value) + 1;
-}
+const stockInput = document.getElementById('stock');
+const minusButton = document.getElementById('minus');
+const plusButton = document.getElementById('plus');
 
-function subtraction() {
-    let number = document.getElementById('stock');
-    number.value = parseInt(number.value) - 1;
-}
+minusButton.addEventListener('click', event => {
+    event.preventDefault();
+    const currentValue = Number(stockInput.value) || 0;
+    if(currentValue !== 0) {
+        stockInput.value = currentValue - 1;
+    }
+});
+
+plusButton.addEventListener('click', event => {
+    event.preventDefault();
+    const currentValue = Number(stockInput.value) || 0;
+    stockInput.value = currentValue + 1;
+});
