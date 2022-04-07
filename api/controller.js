@@ -30,14 +30,39 @@ module.exports = {
         const orderId = `INV-${new Date().getTime()}`;
         const status = 'Aktif';
 
-        await Order.create({ orderId, status, historyCart, historyPromo, subtotal, discount, tax, total, customer, payment })
-            .then(r => {
-                return res.status(200).json({ error: false, message: 'Berhasil membuat data order!', data: r });
+        const checkStock = await Promise.all(
+            historyCart.map(async item => {
+                return await Product.findById(item._id)
+                    .then(productItem => {
+                        const subtStock = productItem.stock - item.qty;
+                        if(subtStock >= 0) {
+                            if (subtStock <= 0) {
+                                Product.findByIdAndUpdate(item._id, {stock: 0, status: false})
+                                    .then(r => r)
+                            } else {
+                                Product.findByIdAndUpdate(item._id, {stock: subtStock})
+                                    .then(r => r)
+                            }
+                        } else {
+                            return subtStock;
+                        }
+                    })
             })
-            .catch(e => {
-                console.log(e)
-                return res.status(500).json({ error: true, message: `Error: ${e.message}`, data: null });
-            })
+        )
+
+        const isMinus = checkStock.find(item => item < 0);
+
+        if(isMinus === undefined) {
+            await Order.create({ orderId, status, historyCart, historyPromo, subtotal, discount, tax, total, customer, payment })
+                .then(r => {
+                    return res.status(200).json({ error: false, message: 'Berhasil membuat data order!', data: r });
+                })
+                .catch(e => {
+                    return res.status(500).json({ error: true, message: `Error: ${e.message}`, data: null });
+                })
+        } else {
+            return res.status(500).json({ error: true, message: `Error`, data: null });
+        }
     },
     getOrderById: async (req, res) => {
         const { _id } = req.params;
@@ -101,7 +126,6 @@ module.exports = {
 
         if(view === 'popular') {
             await Product.find({})
-                .select('_id name price status image productId')
                 .then(r => {
                     const filteredProduct = r.filter((item) => item.status !== false)
 
@@ -132,7 +156,7 @@ module.exports = {
                     return res.status(500).json({ error: true, message: `Error: ${e.message}`, data: null});
                 })
         } else {
-            await Product.find({  })
+            await Product.find({})
                 .populate('category')
                 .then(r => {
                     const filteredProduct = r.filter((item) => {
