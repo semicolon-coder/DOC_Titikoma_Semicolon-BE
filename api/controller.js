@@ -55,7 +55,15 @@ module.exports = {
         if(isMinus === undefined) {
             await Order.create({ orderId, status, historyCart, historyPromo, subtotal, discount, tax, total, customer, payment })
                 .then(r => {
-                    return res.status(200).json({ error: false, message: 'Berhasil membuat data order!', data: r });
+                    if(payment.name === 'Cash') {
+                        const callback = r._id;
+
+                        return res.status(200).json({ error: false, message: 'Berhasil membuat data order!', data: { callback } });
+                    } else if(payment.name === 'QRIS') {
+                        const callback = 'success';
+
+                        return res.status(200).json({ error: false, message: 'Berhasil membuat data order!', data: { callback } });
+                    }
                 })
                 .catch(e => {
                     return res.status(500).json({ error: true, message: `Error: ${e.message}`, data: null });
@@ -68,7 +76,6 @@ module.exports = {
         const { _id } = req.params;
 
         await Order.findById(_id)
-            // .populate({path: 'cart.product', select: '_id productId name price'})
             .then(r => {
                 if(r === null || r === {} || r === []) { return res.status(500).json({ error: true, message: `Error, ID tidak ditemukan!`, data: null}) }
                 return res.status(200).json({ error: false, message: 'Berhasil mendapatkan data order!', data: r});
@@ -81,7 +88,6 @@ module.exports = {
         const { orderId } = req.params;
 
         await Order.findOne({ orderId })
-            // .populate({path: 'cart.product', select: '_id productId name price'})
             .then(r => {
                 if(r === null || r === {} || r === []) {
                     return res.status(500).json({ error: true, message: `Error, ID tidak ditemukan!`, data: null})
