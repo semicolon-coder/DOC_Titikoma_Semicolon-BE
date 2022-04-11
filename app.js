@@ -42,6 +42,7 @@ app.use(cors());
 
 // Require router for page routes
 const APIRouter = require('./api/routes');
+const callbackRouter = require('./callback/routes');
 const authRouter = require('./app/auth/router');
 const dashboardRouter = require('./app/dashboard/router');
 const categoryRouter = require('./app/category/router');
@@ -73,6 +74,7 @@ app.use(multer({ storage: fileStorage, fileFilter }).single('image'))
 // Assign the routes
 app.use('/', dashboardRouter);
 app.use('/api', APIRouter);
+app.use('/callback', callbackRouter);
 app.use('/auth', authRouter);
 app.use('/category', categoryRouter);
 app.use('/history-order', orderRouter);

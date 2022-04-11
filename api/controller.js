@@ -1,8 +1,15 @@
+const Xendit = require('xendit-node');
 const Category = require('../app/category/model');
 const Order = require('../app/order/model');
 const Product = require('../app/product/model');
 const Promo = require('../app/promo/model');
 const Testimonial = require('../app/testimonial/model');
+
+const x = new Xendit({
+    secretKey: process.env.XDT_SECRET_KEY,
+})
+const { Invoice } = x;
+const i = new Invoice({});
 
 module.exports = {
     getCategory: async (req, res) => {
@@ -28,7 +35,7 @@ module.exports = {
     addOrder: async (req, res) => {
         const { historyCart, historyPromo, subtotal, discount, tax, total, customer, payment } = req.body;
         const orderId = `INV-${new Date().getTime()}`;
-        const status = 'Aktif';
+        const status = 'Pending';
 
         const checkStock = await Promise.all(
             historyCart.map(async item => {
@@ -54,15 +61,34 @@ module.exports = {
 
         if(isMinus === undefined) {
             await Order.create({ orderId, status, historyCart, historyPromo, subtotal, discount, tax, total, customer, payment })
-                .then(r => {
+                .then(async r => {
                     if(payment.name === 'Cash') {
-                        const callback = r._id;
+                        const callback = `${process.env.FE_URL}/order/${r._id}`;
 
                         return res.status(200).json({ error: false, message: 'Berhasil membuat data order!', data: { callback } });
                     } else if(payment.name === 'QRIS') {
-                        const callback = 'success';
 
-                        return res.status(200).json({ error: false, message: 'Berhasil membuat data order!', data: { callback } });
+                        await i.createInvoice({
+                            externalID: r.orderId,
+                            amount: r.total,
+                            description: "Pembelian dari TITIKOMA CAFE",
+                            customer: {
+                                given_names: r.customer.name,
+                                email: r.customer.email,
+                                mobile_number: r.customer.phoneNumber
+                            },
+                            paymentMethods: ["QRIS"],
+                            fees: [{
+                                type: "PPN 10%",
+                                value: r.tax
+                            }],
+                            successRedirectURL: `${process.env.FE_URL}/order/${r._id}`,
+                            failureRedirectURL: `${process.env.FE_URL}/order/failed`
+                        }).then(xdt => {
+                            const callback = xdt.invoice_url;
+
+                            return res.status(200).json({ error: false, message: 'Berhasil membuat data order!', data: { callback } });
+                        }).catch(err => console.log(err))
                     }
                 })
                 .catch(e => {
@@ -79,21 +105,6 @@ module.exports = {
             .then(r => {
                 if(r === null || r === {} || r === []) { return res.status(500).json({ error: true, message: `Error, ID tidak ditemukan!`, data: null}) }
                 return res.status(200).json({ error: false, message: 'Berhasil mendapatkan data order!', data: r});
-            })
-            .catch(e => {
-                return res.status(500).json({ error: true, message: `Error: ${e.message}`, data: null});
-            })
-    },
-    getOrderByOrderId: async (req, res) => {
-        const { orderId } = req.params;
-
-        await Order.findOne({ orderId })
-            .then(r => {
-                if(r === null || r === {} || r === []) {
-                    return res.status(500).json({ error: true, message: `Error, ID tidak ditemukan!`, data: null})
-                } else {
-                    return res.status(200).json({ error: false, message: 'Berhasil mendapatkan data order!', data: r});
-                }
             })
             .catch(e => {
                 return res.status(500).json({ error: true, message: `Error: ${e.message}`, data: null});
